@@ -16,3 +16,11 @@ Proyek ini bertujuan untuk:
 - Profil dan informasi sekolah
 - Halaman berita & pengumuman
 - Daftar guru & siswa
+
+---
+
+## 👨‍💻 Tim Pengembang
+
+<b>BuruWebDev</b>  
+SMA NEGERI 1 BURU  
+2025
