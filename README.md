@@ -7,7 +7,7 @@
 ## 🎯 Deskripsi Proyek
 
 Selmat datang di github smansa buru 
-- Memperkenalkan teknologi web (HTML, CSS, JS)
+- Website menggunakan bahasa (HTML, CSS, JS)
 
 
 ## 📦 Fitur Website
