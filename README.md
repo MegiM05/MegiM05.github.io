@@ -15,17 +15,7 @@
 Website ini dibuat sebagai bagian dari pembelajaran/pelatihan pembuatan website di <b>[Nama Sekolah]</b>.  
 Proyek ini bertujuan untuk:
 - Memperkenalkan teknologi web (HTML, CSS, JS)
-- Mengembangkan website sekolah yang informatif, responsif, dan mudah digunakan
-- Melatih kolaborasi menggunakan Git & GitHub
 
----
-
-## 🖼️ Demo & Preview
-
-> 🌐 [Live Demo](https://[username].github.io/[repo-sekolah]/)  
-> ![Screenshot Website](images/preview.png)
-
----
 
 ## 📦 Fitur Website
 
