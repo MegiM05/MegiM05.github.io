@@ -1,5 +1,5 @@
 <h1 align="center">
-  🌟 Website Sekolah <br>[Nama Sekolah atau Kelas]
+  🌟 Website Sekolah <br> SMA NEGERI 1 BURU
 </h1>
 
 <p align="center">
