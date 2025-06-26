@@ -630,7 +630,7 @@ Selamat datang di SMA NEGERI 1 BURU! Kami sangat senang dan bangga menyambut kal
 
     showLoading(true);
     
-    fetch('data.json')
+    fetch('database/data.json')
       .then(res => {
         if (!res.ok) {
           throw new Error('Gagal memuat data');
