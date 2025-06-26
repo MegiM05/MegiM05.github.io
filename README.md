@@ -2,12 +2,6 @@
   🌟 Website Sekolah <br> SMA NEGERI 1 BURU
 </h1>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Web-Project-blue" />
-  <img src="https://img.shields.io/badge/Made%20with-HTML%20%7C%20CSS%20%7C%20JS-orange" />
-  <img src="https://img.shields.io/badge/License-MIT-brightgreen" />
-</p>
-
 ---
 
 ## 🎯 Deskripsi Proyek
