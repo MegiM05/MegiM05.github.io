@@ -22,9 +22,6 @@ Proyek ini bertujuan untuk:
 - Profil dan informasi sekolah
 - Halaman berita & pengumuman
 - Daftar guru & siswa
-- Galeri foto kegiatan
-- Kontak & lokasi sekolah
-- Responsive (mobile friendly)
 
 ---
 
