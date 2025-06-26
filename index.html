@@ -1,0 +1,1094 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smansa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: white;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+        padding: 20px;
+      }
+      
+      /* Navbar */
+      .navbar {
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(10px);
+        color: white;
+        padding: 1rem 2rem;
+        position: fixed;
+        width: calc(100% - 40px);
+        top: 20px;
+        z-index: 1000;
+        border-radius: 12px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        max-width: 1200px;
+      }
+
+      .navbar.scrolled {
+        top: 0;
+        width: 100%;
+        border-radius: 0;
+        padding: 0.8rem 2rem;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .logo i {
+        margin-right: 10px;
+        color: #4361ee;
+      }
+
+            .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      
+      .profile-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #4361ee;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .profile-logo:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(67, 97, 238, 0.3);
+      }
+      
+      .school-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 2rem;
+      }
+
+      .nav-links a {
+        color: #e2e8f0;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s;
+        position: relative;
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: #a5b4fc;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #4361ee;
+        transition: width 0.3s;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .menu-toggle {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #a5b4fc;
+      }
+
+      /* Landing Page */
+      .landing {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 2rem;
+        position: relative;
+        overflow: hidden;
+        background: url('image/beranda.jpeg') no-repeat center center;
+        background-size: cover;
+      }
+
+      .landing::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85));
+        z-index: 0;
+      }
+
+      .landing h1 {
+        font-size: clamp(2rem, 6vw, 4rem);
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards 0.3s;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        line-height: 1.2;
+      }
+
+      .landing p {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        margin-bottom: 2.5rem;
+        max-width: 800px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards 0.6s;
+        color: #cbd5e1;
+        line-height: 1.6;
+      }
+
+      .welcome-btn {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards 0.9s;
+        box-shadow: 0 4px 20px rgba(67, 97, 238, 0.4);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .welcome-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6);
+      }
+
+      .welcome-btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Profile Section */
+      .profile-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 100px auto 60px;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        padding: 0 20px;
+      }
+
+      .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid rgba(67, 97, 238, 0.5);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.5s;
+      }
+
+      .profile-image:hover {
+        transform: scale(1.05);
+      }
+
+      .profile-info {
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .profile-name {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .profile-title {
+        font-size: 1.1rem;
+        color: #a5b4fc;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+
+      .profile-description {
+        font-size: 1rem;
+        color: #cbd5e1;
+        line-height: 1.7;
+        margin-bottom: 15px;
+      }
+
+      /* Visi Misi Section */
+      .vision-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .accordion {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+      }
+
+      .accordion:hover {
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      }
+
+      .accordion-item {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .accordion-header {
+        padding: 1.2rem 2rem;
+        font-weight: 600;
+        background: linear-gradient(90deg, rgba(67, 97, 238, 0.4), rgba(67, 97, 238, 0.2));
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .accordion-header:hover {
+        background: linear-gradient(90deg, rgba(67, 97, 238, 0.5), rgba(67, 97, 238, 0.3));
+      }
+
+      .accordion-header::after {
+        content: '+';
+        font-size: 1.8rem;
+        font-weight: 300;
+        transition: all 0.3s ease;
+      }
+
+      .accordion-item.active .accordion-header::after {
+        content: '-';
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.2, 0.8, 0.4, 1), padding 0.5s ease;
+        padding: 0 2rem;
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: 2000px;
+        padding: 1.5rem 2rem;
+        transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+      }
+
+      .accordion-content ul {
+        padding-left: 1.5rem;
+        margin: 1rem 0;
+      }
+
+      .accordion-content li {
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+        color: #cbd5e1;
+      }
+
+      /* Teachers Section */
+      .teachers-section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+      }
+
+      .teachers-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .teacher-card {
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.1);
+        backdrop-filter: blur(5px);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .teacher-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      }
+
+      .teacher-image {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .teacher-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .teacher-card:hover .teacher-image img {
+        transform: scale(1.1);
+      }
+
+      .teacher-info {
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .teacher-info h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      .teacher-info p {
+        color: #a5b4fc;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .teacher-social {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .teacher-social a {
+        color: #cbd5e1;
+        font-size: 1.2rem;
+        transition: all 0.3s;
+      }
+
+      .teacher-social a:hover {
+        color: #4361ee;
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      .footer {
+        max-width: 1200px;
+        margin: 80px auto 0;
+        padding: 60px 20px 30px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-about {
+        max-width: 350px;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(to right, #fff, #a5b4fc);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .footer-logo i {
+        margin-right: 10px;
+        color: #4361ee;
+      }
+
+      .footer-about p {
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        color: #cbd5e1;
+        font-size: 0.95rem;
+      }
+
+      .footer-links h3, .footer-contact h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 10px;
+        color: white;
+      }
+
+      .footer-links h3::after, .footer-contact h3::after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #4361ee, #3a0ca3);
+        bottom: 0;
+        left: 0;
+        border-radius: 3px;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+        display: inline-block;
+        padding: 5px 0;
+      }
+
+      .footer-links a:hover {
+        color: #a5b4fc;
+        transform: translateX(5px);
+      }
+
+      .contact-info {
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contact-info i {
+        margin-right: 12px;
+        color: #4361ee;
+        margin-top: 5px;
+        font-size: 1.1rem;
+      }
+
+      .contact-info span {
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      /* Animasi Latar Belakang */
+      .bg-bubbles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .bg-bubbles li {
+        position: absolute;
+        list-style: none;
+        display: block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(67, 97, 238, 0.15);
+        bottom: -160px;
+        animation: square 25s infinite;
+        transition-timing-function: linear;
+        border-radius: 50%;
+      }
+
+      .bg-bubbles li:nth-child(1) {
+        left: 10%;
+        width: 80px;
+        height: 80px;
+        animation-delay: 0s;
+        animation-duration: 17s;
+      }
+
+      .bg-bubbles li:nth-child(2) {
+        left: 20%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 2s;
+        animation-duration: 12s;
+      }
+
+      .bg-bubbles li:nth-child(3) {
+        left: 25%;
+        animation-delay: 4s;
+      }
+
+      .bg-bubbles li:nth-child(4) {
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        animation-duration: 22s;
+        background-color: rgba(67, 97, 238, 0.25);
+      }
+
+      .bg-bubbles li:nth-child(5) {
+        left: 70%;
+      }
+
+      .bg-bubbles li:nth-child(6) {
+        left: 80%;
+        width: 120px;
+        height: 120px;
+        animation-delay: 3s;
+        background-color: rgba(67, 97, 238, 0.2);
+      }
+
+      .bg-bubbles li:nth-child(7) {
+        left: 32%;
+        width: 160px;
+        height: 160px;
+        animation-delay: 7s;
+      }
+
+      .bg-bubbles li:nth-child(8) {
+        left: 55%;
+        width: 20px;
+        height: 20px;
+        animation-delay: 15s;
+        animation-duration: 40s;
+      }
+
+      .bg-bubbles li:nth-child(9) {
+        left: 25%;
+        width: 10px;
+        height: 10px;
+        animation-delay: 2s;
+        animation-duration: 40s;
+        background-color: rgba(67, 97, 238, 0.3);
+      }
+
+      .bg-bubbles li:nth-child(10) {
+        left: 90%;
+        width: 160px;
+        height: 160px;
+        animation-delay: 11s;
+      }
+
+      @keyframes square {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-1000px) rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+
+      .animate.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: calc(100% - 40px);
+          height: auto;
+          background: rgba(15, 23, 42, 0.95);
+          flex-direction: column;
+          align-items: center;
+          padding: 2rem;
+          transition: all 0.3s;
+          border-radius: 12px;
+          backdrop-filter: blur(10px);
+          margin: 0 20px;
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .nav-links li {
+          margin: 1rem 0;
+        }
+
+        .profile-section {
+          text-align: center;
+          margin-top: 120px;
+        }
+
+        .profile-image {
+          width: 150px;
+          height: 150px;
+        }
+
+        .teacher-card {
+          max-width: 350px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 15px;
+        }
+
+        .navbar {
+          padding: 0.8rem 1.5rem;
+          width: calc(100% - 30px);
+        }
+
+        .profile-info {
+          text-align: center;
+        }
+
+        .accordion-header {
+          padding: 1rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        .accordion-content {
+          padding: 0 1.5rem;
+        }
+
+        .accordion-item.active .accordion-content {
+          padding: 1rem 1.5rem;
+        }
+
+        .footer-container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- Background Bubbles -->
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- Navbar -->
+   <nav class="navbar">
+        <div class="navbar-container">
+            <a href="fauzi.html" class="logo-container">
+                <!-- Gambar profil lokal -->
+                <img src="image/halaman.jpeg" alt="Logo Sekolah" class="profile-logo">
+                <span class="school-name">SMA NEGERI 1 BURU</span>
+            </a>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#profile">Profil</a></li>
+                <li><a href="#vision">Visi & Misi</a></li>
+                <li><a href="#teachers">Guru</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section class="landing" id="home">
+        <h1>Selamat Datang </h1>
+        <p>Membentuk generasi unggul yang berkarakter, berprestasi, dan berakhlak mulia melalui pendidikan berkualitas.</p>
+        <a href="fauzi.html" class="welcome-btn">Hasil kelulusan</a>
+    </section>
+
+    <!-- Profil Sekolah -->
+    <section id="profile">
+        <div class="profile-section animate">
+            <img src="image/profile.jpeg" alt="Sekolah XYZ" class="profile-image">
+            <div class="profile-info animate">
+                <h2 class="profile-name">Neneng Yulia, S.Pd</h2>
+                <p class="profile-title">KEPALA SEKOLAH SMAN 1 BURU</p>
+                <p class="profile-description">
+                    Assalamualaikum Wr. Wb. Syukur alhamdulillah berkat rahmat Tuhan yang Maha Esa dan doa restu serta kerja keras segenap keluarga besar SMA Negeri 1 Buru yang tiada henti website resmi SMA Negeri 1 Buru dapat kembali online sebagai salah satu bentuk media komunikasi keluarga besar SMA Negeri 1 Buru.
+
+Pada kesempatan yang membanggakan ini, saya menyambut baik penayangan kembali website resmi SMA Negeri 1 Buru sebagai bagian publikasi, ajang silaturahmi, serta kenangan bagi alumni, Stakeholder, dan masyarakat pendidikan di Kota Namlea dan sekitarnya. Semoga ke depan SMA Negeri 1 Buru tetap konsisten menjadi pelayan pendidikan bermutu yang mampu menghantar para peserta didik menjadi pribadi tangguh dan berkarakter yang mampu ikut mencerdaskan kehidupan bangsa, meningkatkan derajat kehidupan masyarakat, serta mengentaskan rakyat dari belitan krisis multi dimensi, serta semakin matang dan selalu siap bersaing di era global, untuk menjadi institusi pendidikan yang baik, unggul, dan bermutu.
+                </p>
+                <p class="profile-description">
+                    Akhir kata saya ucapkan selamat berkarya, selamat mengabdi, semoga Tuhan Yang Maha Kuasa meridhoi dan membimbing kita dalam menapaki masa depan yang penuh tantangan Wassalamu’alaikum Wr. Wb.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi & Misi -->
+    <section class="vision-section" id="vision">
+        <h2 class="section-title animate">Visi & Misi</h2>
+        <div class="accordion">
+            <div class="accordion-item animate">
+                <div class="accordion-header">
+                    <span>Visi Sekolah</span>
+                </div>
+                <div class="accordion-content">
+                    <p>"Terwujudnya kualitas pendidikan yang didasari iman, taqwa,
+moral dan seni budaya serta IPTEK
+"</p>
+                </div>
+            </div>
+            <div class="accordion-item animate">
+                <div class="accordion-header">
+                    <span>Misi Sekolah</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>1. Mewujudkan kualitas pendidikan melalui peningkatan mutu
+pembelajaran
+</li>
+                        <li>2. Tersedianya fasilitas belajar yang memadai demi
+terlaksananya proses belajar mengajar yang efektif.</li>
+                        <li>3. Membekali siswa dengan sejumlah pengetahuan akademik
+untuk melanjutkan ke jenjang pendidikan yang lebih tinggi</li>
+                        <li>4. Menghasilkan lulusan yang berkualitas, bersumber daya yang
+hamdal dan memiliki IPTEK dan IMTAQ</li>
+                        <li>5. Membekali siswa dengan berbagai kegiatan akademik untuk
+memiliki kualitas pengetahuan, iman, moral, budaya dan budi
+pekerti</li>
+                        <li>6. Mewujudkan sekolah yang dapat bersaing baik local, nasional
+maupun internasional.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion-item animate">
+                <div class="accordion-header">
+                    <span>Tujuan Sekolah</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>1. Mewujudkan SMA Neg. 1 Buru sebagai sekolah unggul/rujukan dalam
+bidang akademis dan non akademik.
+</li>
+                        <li>2. Menciptakan lingkugnan sekolah yang kondusif, aman dan nyaman
+untuk proses belajar mengajar. </li>
+                        <li>3. Menjadikan sekolah sebagai pusat pengembangan bakat, minat dan
+pembinaan prestasi murid.
+</li>
+                        <li>4. Mewujudkan SDM sekolah yang berkompeten dalam bidangnya
+masing-masing dan memiliki pengetahuan umum yang luas untuk bekal
+kiprahnya dalam masyarakat.</li>
+                        <li>5. Mewujudkan SMA Neg. 1 Buru sebagai sekolah yang memiliki sarana dan
+prasarana ideal untuk bersaing dalam dunia global</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guru -->
+    <section class="teachers-section" id="teachers">
+        <h2 class="section-title animate">Guru Kami</h2>
+        <div class="teachers-container">
+            <div class="teacher-card animate">
+                <div class="teacher-image">
+                    <img src="image/Sulaiman Rumbawa.jpeg" alt="Sulaiman Rumbawa, S.Pd, M.Pd">
+                </div>
+                <div class="teacher-info">
+                    <h3>Sulaiman Rumbawa, S.Pd, M.Pd</h3>
+                    <p>wakil kepala sekolah Bidang Kesiswaan</p>
+                  </div>
+            </div>
+            <div class="teacher-card animate">
+                <div class="teacher-image">
+                    <img src="image/Titawael.jpeg" alt="M.J.T. Titawael, SE, M.MPd">
+                </div>
+                <div class="teacher-info">
+                    <h3>M.J.T. Titawael, SE, M.MPd</h3>
+                    <p>wakil Kepala Sekolah Bidang Sarana Prasarana</p>
+                </div>
+            </div>
+            <div class="teacher-card animate">
+                <div class="teacher-image">
+                    <img src="image/JuliatiLating.jpeg" alt="Juliati Lating, S.Pd ">
+                </div>
+                <div class="teacher-info">
+                    <h3>Juliati Lating, S.Pd </h3>
+                    <p>Wakil Kepala Sekolah Bidang Hub. Masyarakat</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>SMA NEGERI 1 BURU</span>
+                    </div>
+                    <p>Komitmen kami adalah memberikan pendidikan terbaik untuk membentuk generasi penerus bangsa yang berkarakter dan berprestasi.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#profile">Profil Sekolah</a></li>
+                        <li><a href="#vision">Visi & Misi</a></li>
+                        <li><a href="#teachers">Staf Pengajar</a></li>
+                        <li><a href="fauzi.html">Hasil kelulusan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Kontak Kami</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>nama jalan</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>nomor hp</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>email</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-clock"></i>
+                        <span>Senin-Jumat: 07.00 - 12.30 WIB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Daftar Kelulusan Siswa. Credate By Fauzi Alifatah & Megi Melasari.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Accordion
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', function() {
+                // Close all other accordion items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Scroll Animation
+        const animateElements = document.querySelectorAll('.animate');
+        
+        function checkScroll() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('show');
+                }
+            });
+        }
+        
+        // Initial check
+        checkScroll();
+        
+        // Check on scroll
+        window.addEventListener('scroll', checkScroll);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations on load
+        window.addEventListener('load', function() {
+            // Trigger initial animations
+            checkScroll();
+            
+            // Add loaded class to body for any potential loading animations
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
