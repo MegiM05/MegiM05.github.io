@@ -6,8 +6,7 @@
 
 ## 🎯 Deskripsi Proyek
 
-Website ini dibuat sebagai bagian dari pembelajaran/pelatihan pembuatan website di <b>SMA NEGERI 1 BURU</b>.  
-Proyek ini bertujuan untuk:
+Selmat datang di github smansa buru 
 - Memperkenalkan teknologi web (HTML, CSS, JS)
 
 
