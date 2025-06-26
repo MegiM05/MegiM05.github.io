@@ -22,5 +22,5 @@ Proyek ini bertujuan untuk:
 ## 👨‍💻 Tim Pengembang
 
 <b>BuruWebDev</b>  
-SMA NEGERI 1 BURU  
-2025
+- Muhammad Fauzi Alifatah [ developer website ]
+- Megi melasari [ developer website  & Guru ]
