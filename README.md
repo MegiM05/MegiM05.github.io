@@ -16,8 +16,3 @@ Proyek ini bertujuan untuk:
 - Profil dan informasi sekolah
 - Halaman berita & pengumuman
 - Daftar guru & siswa
-
----
-
-## 🗂️ Struktur Folder
-
