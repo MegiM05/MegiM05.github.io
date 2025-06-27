@@ -53,14 +53,20 @@
         { "nama": "Bain Rein El, S.Pd", "jabatan": "Anggota" }
     ],
     "kelompok6": [
-        { "nama": "-", "jabatan": "-" },
-        { "nama": "-", "jabatan": "-" },
-        { "nama": "-", "jabatan": "-" }
+        { "nama": "Siti Layn", "jabatan": "Koordinator Pembinaan Karakter Keagamaan" },
+        { "nama": "Ali mMahsudin, S.Pd, M.Pd", "jabatan": "Anggota" },
+        { "nama": "DR Rabahudin, S.Ag, M.Pd I", "jabatan": "Anggota" },
+        { "nama": "Hamja Salim, S.Ag", "jabatan": "Anggota" },
+        { "nama": "Indra matitaputy, Sp, Gr", "jabatan": "Anggota" }
     ],
     "kelompok7": [
-        { "nama": "-", "jabatan": "-" },
-        { "nama": "-", "jabatan": "-" },
-        { "nama": "-", "jabatan": "-" }
+        { "nama": "Alni Wance, S.Pd", "jabatan": "Guru" },
+        { "nama": "Sartiani Kolengsusu", "jabatan": "Pegawai Tata Usaha" },
+        { "nama": "Halija Simin, S.Pd", "jabatan": "Guru" },
+        { "nama": "Husein Khaer SH", "jabatan": "Guru" },
+        { "nama": "Rusmia, S.Pd", "jabatan": "Guru" },
+        { "nama": "Fatma Madero, S.Pd", "jabatan": "Guru" },
+        { "nama": "La Ode Sugianto, S.Pd, M.Pd", "jabatan": "Guru" }
     ],
     "kelompok8": [
         { "nama": "Rahman Samuni, S.Pd", "jabatan": "Pengelola Perpustakaan" },
@@ -122,21 +128,5 @@
     "kelompok18": [
         { "nama": "Irma Maryanti Rumodar", "jabatan": "Koordinator Harian Konsumsi Guru dan pegawai" },
         { "nama": "Aci Waly", "jabatan": "Anggota" }
-    ],
-    "kelompok19": [
-        { "nama": "Siti Layn", "jabatan": "Koordinator Pembinaan Karakter Keagamaan" },
-        { "nama": "Ali mMahsudin, S.Pd, M.Pd", "jabatan": "Anggota" },
-        { "nama": "DR Rabahudin, S.Ag, M.Pd I", "jabatan": "Anggota" },
-        { "nama": "Hamja Salim, S.Ag", "jabatan": "Anggota" },
-        { "nama": "Indra matitaputy, Sp, Gr", "jabatan": "Anggota" }
-    ],
-    "kelompok20": [
-        { "nama": "Alni Wance, S.Pd", "jabatan": "Guru" },
-        { "nama": "Sartiani Kolengsusu", "jabatan": "Pegawai Tata Usaha" },
-        { "nama": "Halija Simin, S.Pd", "jabatan": "Guru" },
-        { "nama": "Husein Khaer SH", "jabatan": "Guru" },
-        { "nama": "Rusmia, S.Pd", "jabatan": "Guru" },
-        { "nama": "Fatma Madero, S.Pd", "jabatan": "Guru" },
-        { "nama": "La Ode Sugianto, S.Pd, M.Pd", "jabatan": "Guru" }
     ]
 }
