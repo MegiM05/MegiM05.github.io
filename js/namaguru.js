@@ -11,7 +11,7 @@ const kelompokColors = [
 async function loadData() {
     try {
         console.log('Mencoba memuat data dari database/nama.json...');
-        const response = await fetch('database/nama.json');
+        const response = await fetch('./database/nama.json');
         
         if (!response.ok) {
             throw new Error(`Gagal memuat data. Status: ${response.status}`);
