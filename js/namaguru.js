@@ -7,51 +7,20 @@ const kelompokColors = [
     { bg: 'rgba(26, 188, 156, 0.2)', text: '#1abc9c', border: 'rgba(26, 188, 156, 0.5)' }
 ];
 
-// Fungsi untuk memuat data dengan error handling yang lebih baik
+// Ubah path ini jika lokasi file berbeda
 async function loadData() {
     try {
-        console.log('Mencoba memuat data dari database/nama.json...');
-        const response = await fetch('./database/nama.json');
-        
-        if (!response.ok) {
-            throw new Error(`Gagal memuat data. Status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Data berhasil dimuat:', data);
-        
-        // Validasi struktur data
-        if (typeof data !== 'object' || data === null || Array.isArray(data)) {
-            throw new Error('Format data tidak valid. Harus berupa object dengan kelompok sebagai key');
-        }
-        
-        return data;
+        const response = await fetch('database/nama.json'); // TANPA ../ kalau html di root
+        if (!response.ok) throw new Error('Failed to load data');
+        return await response.json();
     } catch (error) {
-        console.error('Error dalam loadData:', error);
-        
-        // Tampilkan pesan error ke UI
-        const container = document.getElementById('guru-container');
-        if (container) {
-            container.innerHTML = `
-                <div class="error-state">
-                    <p>Gagal memuat data: ${error.message}</p>
-                    <button onclick="window.location.reload()">Coba Lagi</button>
-                </div>
-            `;
-        }
-        
+        console.error('Error:', error);
         return null;
     }
 }
 
-// Fungsi untuk membuat tombol filter
 function generateFilterButtons(kelompokList) {
     const container = document.getElementById('filter-buttons');
-    if (!container) {
-        console.error('Element filter-buttons tidak ditemukan');
-        return;
-    }
-
     container.innerHTML = '';
 
     const allBtn = document.createElement('button');
@@ -69,133 +38,86 @@ function generateFilterButtons(kelompokList) {
     });
 }
 
-// Fungsi untuk menampilkan data guru
 async function displayData(filter = 'all') {
     const container = document.getElementById('guru-container');
-    if (!container) {
-        console.error('Element guru-container tidak ditemukan');
+    container.innerHTML = '<div class="loading-state">Memuat data...</div>';
+    const data = await loadData();
+
+    if (!data) {
+        container.innerHTML = '<div class="error-state">Gagal memuat data</div>';
         return;
     }
 
-    container.innerHTML = '<div class="loading-state">Memuat data...</div>';
-    
-    try {
-        const data = await loadData();
-        
-        if (!data) {
-            throw new Error('Data tidak tersedia');
-        }
+    container.innerHTML = '';
 
-        container.innerHTML = '';
-        
-        if (filter === 'all') {
-            // Tampilkan semua kelompok
-            Object.entries(data).forEach(([kelompok, guruList], index) => {
-                const colorIndex = index % kelompokColors.length;
-
-                // Judul kelompok
-                const title = document.createElement('h2');
-                title.className = 'group-title';
-                title.textContent = `Kelompok ${index + 1}`;
-                container.appendChild(title);
-                
-                // Kartu guru
-                guruList.forEach(guru => {
-                    if (!guru.nama || !guru.jabatan) {
-                        console.warn('Data guru tidak lengkap:', guru);
-                        return;
-                    }
-
-                    const card = document.createElement('div');
-                    card.className = 'guru-card';
-                    card.innerHTML = `
-                        <div class="guru-nama">${guru.nama}</div>
-                        <div class="guru-jabatan">${guru.jabatan}</div>
-                        <div class="guru-kelompok kelompok-${index + 1}" 
-                             style="--bg-color: ${kelompokColors[colorIndex].bg}; 
-                                    --text-color: ${kelompokColors[colorIndex].text};
-                                    --border-color: ${kelompokColors[colorIndex].border}">
-                            Kelompok ${index + 1}
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            });
-        } else {
-            // Tampilkan kelompok spesifik
-            const keys = Object.keys(data);
-            const kelompokIndex = keys.indexOf(filter);
-            
-            if (kelompokIndex === -1) {
-                throw new Error(`Kelompok ${filter} tidak ditemukan`);
-            }
-
-            const colorIndex = kelompokIndex % kelompokColors.length;
-
+    if (filter === 'all') {
+        Object.entries(data).forEach(([kelompok, guruList], index) => {
+            const colorIndex = index % kelompokColors.length;
             const title = document.createElement('h2');
             title.className = 'group-title';
-            title.textContent = `Kelompok ${kelompokIndex + 1}`;
+            title.textContent = `Kelompok ${index + 1}`;
             container.appendChild(title);
-            
-            data[filter].forEach(guru => {
-                if (!guru.nama || !guru.jabatan) {
-                    console.warn('Data guru tidak lengkap:', guru);
-                    return;
-                }
 
+            guruList.forEach(guru => {
                 const card = document.createElement('div');
                 card.className = 'guru-card';
                 card.innerHTML = `
                     <div class="guru-nama">${guru.nama}</div>
                     <div class="guru-jabatan">${guru.jabatan}</div>
-                    <div class="guru-kelompok kelompok-${kelompokIndex + 1}"
-                         style="--bg-color: ${kelompokColors[colorIndex].bg}; 
-                                --text-color: ${kelompokColors[colorIndex].text};
-                                --border-color: ${kelompokColors[colorIndex].border}">
+                    <div class="guru-kelompok kelompok-${index + 1}" 
+                         style="background:${kelompokColors[colorIndex].bg};
+                                color:${kelompokColors[colorIndex].text};
+                                border:2px solid ${kelompokColors[colorIndex].border}; 
+                                margin-bottom:4px;">
+                        Kelompok ${index + 1}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        });
+    } else {
+        const keys = Object.keys(data);
+        const kelompokIndex = keys.indexOf(filter);
+        if (kelompokIndex !== -1) {
+            const colorIndex = kelompokIndex % kelompokColors.length;
+            const title = document.createElement('h2');
+            title.className = 'group-title';
+            title.textContent = `Kelompok ${kelompokIndex + 1}`;
+            container.appendChild(title);
+
+            data[filter].forEach(guru => {
+                const card = document.createElement('div');
+                card.className = 'guru-card';
+                card.innerHTML = `
+                    <div class="guru-nama">${guru.nama}</div>
+                    <div class="guru-jabatan">${guru.jabatan}</div>
+                    <div class="guru-kelompok kelompok-${kelompokIndex + 1}" 
+                         style="background:${kelompokColors[colorIndex].bg};
+                                color:${kelompokColors[colorIndex].text};
+                                border:2px solid ${kelompokColors[colorIndex].border}; 
+                                margin-bottom:4px;">
                         Kelompok ${kelompokIndex + 1}
                     </div>
                 `;
                 container.appendChild(card);
             });
         }
-    } catch (error) {
-        console.error('Error dalam displayData:', error);
-        container.innerHTML = `
-            <div class="error-state">
-                <p>Terjadi kesalahan: ${error.message}</p>
-                <button onclick="window.location.reload()">Coba Lagi</button>
-            </div>
-        `;
     }
 }
 
-// Inisialisasi saat DOM siap
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('DOM siap, memulai inisialisasi...');
-    
-    try {
-        const data = await loadData();
-        
-        if (data) {
-            console.log('Data diterima, membuat tombol filter...');
-            generateFilterButtons(Object.keys(data));
-            
-            // Event listener untuk tombol filter
-            const filterContainer = document.getElementById('filter-buttons');
-            if (filterContainer) {
-                filterContainer.addEventListener('click', function(e) {
-                    if (e.target.classList.contains('filter-btn')) {
-                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                        e.target.classList.add('active');
-                        displayData(e.target.dataset.filter);
-                    }
-                });
+    const data = await loadData();
+    if (data) {
+        generateFilterButtons(Object.keys(data));
+        document.getElementById('filter-buttons').addEventListener('click', function(e) {
+            if (e.target.classList.contains('filter-btn')) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                displayData(e.target.dataset.filter);
             }
-            
-            // Tampilan awal
-            displayData();
-        }
-    } catch (error) {
-        console.error('Error dalam inisialisasi:', error);
+        });
+        displayData();
+    } else {
+        document.getElementById('guru-container').innerHTML = '<div class="error-state">Gagal memuat data</div>';
     }
 });
