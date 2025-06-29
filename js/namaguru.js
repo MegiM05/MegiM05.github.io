@@ -9,14 +9,7 @@ const kelompokColors = [
 
 // Ubah path ini jika lokasi file berbeda
 async function loadData() {
-    try {
-        const response = await fetch('database/nama.json'); // TANPA ../ kalau html di root
-        if (!response.ok) throw new Error('Failed to load data');
-        return await response.json();
-    } catch (error) {
-        console.error('Error:', error);
-        return null;
-    }
+    return dataGuru;
 }
 
 function generateFilterButtons(kelompokList) {
