@@ -155,7 +155,7 @@
     <div class="login-container">
         <div class="logo">
             <img src="image/halaman.jpeg" alt="Logo SMA Negeri 1 Buru">
-            <h2>SMANSA</h2>
+            <h2>Login Admin</h2>
         </div>
         
         <form id="loginForm">
@@ -170,10 +170,20 @@
                 <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
                 <div class="error-message" id="passwordError">Password salah!</div>
             </div>
-
+            
+            <div class="remember-forgot">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Ingat saya</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Lupa password?</a>
+                </div>
+            </div>
+            
             <button type="submit" class="login-btn">Login</button>
         </form>
-
+        
 
     <script src="js/login.js"></script>
 </body>
