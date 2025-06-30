@@ -91,28 +91,6 @@
             cursor: pointer;
         }
         
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .remember-me {
-            display: flex;
-            align-items: center;
-        }
-        
-        .remember-me input {
-            margin-right: 8px;
-        }
-        
-        .forgot-password a {
-            color: #a5b4fc;
-            text-decoration: none;
-        }
-        
         .login-btn {
             width: 100%;
             padding: 12px;
@@ -138,24 +116,13 @@
             margin-top: 5px;
             display: none;
         }
-        
-        .login-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .login-footer a {
-            color: #a5b4fc;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="logo">
             <img src="image/halaman.jpeg" alt="Logo SMA Negeri 1 Buru">
-            <h2>SMANSA BURU</h2>
+            <h2>Login Admin</h2>
         </div>
         
         <form id="loginForm">
@@ -168,23 +135,13 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" placeholder="Masukkan password" required>
                 <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
-                <div class="error-message" id="passwordError">Password salah!</div>
-            </div>
-            
-            <div class="remember-forgot">
-                <div class="remember-me">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Ingat saya</label>
-                </div>
-                <div class="forgot-password">
-                    <a href="#">Lupa password?</a>
-                </div>
+                <div class="error-message" id="passwordError">Username atau password salah!</div>
             </div>
             
             <button type="submit" class="login-btn">Login</button>
         </form>
-        
+    </div>
 
-    <script src="js/login.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
