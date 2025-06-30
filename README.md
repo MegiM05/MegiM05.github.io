@@ -38,13 +38,6 @@ Tujuan utamanya adalah untuk menyediakan informasi terbaru, memudahkan komunikas
 
 ---
 
-## 📫 Kontribusi & Kontak
-
-Kami terbuka untuk kolaborasi, ide, atau masukan demi kemajuan website ini.  
-Hubungi kami melalui [GitHub Issues](https://github.com/) atau kontak yang tertera di website sekolah.
-
----
-
 > Terima kasih telah mendukung digitalisasi SMA Negeri 1 Buru.  
 > Bersama, kita ciptakan lingkungan belajar yang informatif dan inovatif!
 
