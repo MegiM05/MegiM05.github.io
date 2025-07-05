@@ -1,48 +1,29 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordError = document.getElementById('passwordError');
+const validCredentials = {
+    username: "admin",
+    password: "sman1buru75"
+};
 
-    const validUsers = [
-        { username: "admin", password: "sman1buru75" }
-    ];
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
 
-    togglePassword.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye');
-        this.classList.toggle('fa-eye-slash');
-    });
+togglePassword.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+});
 
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value;
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-        const isValidUser = validUsers.some(user => 
-            user.username === username && user.password === password
-        );
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const message = document.getElementById('message');
 
-        if(isValidUser) {
-
-            alert('Login berhasil!');
-            window.location.href = "fauzi.html";
-        } else {
-
-            passwordError.style.display = 'block';
-            passwordInput.value = '';
-            passwordInput.focus();
-            
-            setTimeout(() => {
-                passwordError.style.display = 'none';
-            }, 3000);
-        }
-    });
-
-    passwordInput.addEventListener('input', function() {
-        passwordError.style.display = 'none';
-    });
+    if (username === validCredentials.username && password === validCredentials.password) {
+        message.textContent = "";
+        window.location.href = "fauzi.html";
+    } else {
+        message.textContent = "Username atau password salah";
+    }
 });
