@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 
     if (username === validCredentials.username && password === validCredentials.password) {
         message.textContent = "";
-        window.location.href = "/fauzil";
+        window.location.href = "./fauzi";
     } else {
         message.textContent = "Username atau password salah";
     }
